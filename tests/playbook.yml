@@ -1,5 +1,11 @@
 ---
 - hosts: all
 
+  pre_tasks:
+    - name: make test user
+      user:
+        name: johnd
+        comment: "John Doe"
+
   roles:
     - ../../

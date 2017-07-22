@@ -1,0 +1,42 @@
+---
+
+- name: install tar on Fedora 24
+  dnf:
+    name: tar
+    state: present
+  when: ansible_distribution == "Fedora" and ansible_distribution_major_version == "24"
+
+- name: Create directories for CLion
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+  - "{{ clion_download_directory }}"
+  - "{{ clion_install_directory }}"
+  - "{{ clion_desktop_file_location | dirname }}"
+
+
+- name: Download CLion plugins
+  get_url:
+    url: "{{ clion_plugin_download_mirror }}{{ item }}"
+    dest: "{{ clion_download_directory }}"
+  register: clion_plugins_downloaded
+  with_items: "{{ clion_plugins }}"
+
+- name: Install CLion
+  unarchive:
+    copy: no
+    src: "{{ clion_download_url}}"
+    dest: "{{ clion_install_directory }}"
+    creates: "{{ clion_location }}/bin/clion.sh"
+
+- name: Install CLion Plugins
+  unarchive:
+    src: "{{ item.dest }}"
+    dest: "{{ clion_location }}/plugins"
+  with_items: "{{ clion_plugins_downloaded.results }}"
+
+- name: Create CLion desktop entry
+  template:
+    src: clion.desktop.j2
+    dest: "{{ clion_desktop_file_location }}"
