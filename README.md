@@ -1,10 +1,10 @@
-CLion
+CLion (https://www.jetbrains.com/clion)
 =========
 
-This role installs CLion (https://www.jetbrains.com/clion) and configured plugins. It has been tested on Linux Mint 18 but should wokr on most 
-distributions. By default it installs Pycharm community edition 2017.1.1 and no additional plugins
+This role installs CLion and configured plugins. It has been tested on Linux Mint 18 but should wokr on most 
+distributions. By default it installs CLion 2017.2 and no additional plugins
 
-By default Pycharm is installed under the user's home directory and _become_ is not needed.
+By default DataGrip is installed under the user's home directory and _become_ is not needed.
 
 Requirements
 ------------
