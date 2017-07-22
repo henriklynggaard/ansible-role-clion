@@ -1,7 +1,7 @@
-Pycharm
+CLion
 =========
 
-This role installs Pycharm and configured plugins. It has been tested on Linux Mint 18 but should wokr on most 
+This role installs CLion (https://www.jetbrains.com/clion) and configured plugins. It has been tested on Linux Mint 18 but should wokr on most 
 distributions. By default it installs Pycharm community edition 2017.1.1 and no additional plugins
 
 By default Pycharm is installed under the user's home directory and _become_ is not needed.
@@ -15,21 +15,22 @@ None
 Role Variables
 --------------
 
-    pycharm_version: 2017.1.1
-    pycharm_edition: community
-    pycharm_download_mirror: https://download.jetbrains.com/python/
-    pycharm_plugin_download_mirror: "https://plugins.jetbrains.com/plugin/download?updateId="
-    pycharm_plugins: []
-    pycharm_download_directory: /tmp
-    pycharm_install_directory: "{{ ansible_env['HOME'] }}/Tools"
+    clion_version: 2017.2
+    clion_download_mirror: https://download.jetbrains.com/cpp/
+    clion_plugin_download_mirror: "https://plugins.jetbrains.com/plugin/download?updateId="
+    clion_plugins: []
+    clion_download_directory: /tmp
+    clion_install_directory: "{{ ansible_env['HOME'] }}/Tools"
 
-    pycharm_install_file: "pycharm-{{ pycharm_edition}}-{{ pycharm_version }}.tar.gz"
-    pycharm_download_url: "{{ pycharm_download_mirror }}{{ pycharm_install_file }}"
-    pycharm_desktop_file_directory: "{{ ansible_env['HOME'] }}/.local/share/applications"
-    pycharm_desktop_file_location: "{{ pycharm_desktop_file_directory }}//pycharm-{{ pycharm_edition }}-{{ pycharm_version }}.desktop"
+    # calculated
+
+    clion_install_file: "CLion-{{ clion_version }}.tar.gz"
+    clion_download_url: "{{ clion_download_mirror }}{{ clion_install_file }}"
+    clion_location: "{{ clion_install_directory }}/clion-{{ clion_version }}"
+    clion_desktop_file_location: "{{ ansible_env['HOME'] }}/.local/share/applications/clion-{{ clion_version }}.desktop"
 
 
-pycharm_plugins is a list of names which get appended to pycharm_plugin_download_mirror to form a full download  
+clion_plugins is a list of names which get appended to clion_plugin_download_mirror to form a full download  
 
 
 Dependencies
@@ -47,14 +48,14 @@ __Example playbook__
       connection: local
     
     roles:
-      - henriklyngaard.pycharm
+      - henriklyngaard.clion
       
 __Exmaple inventory for plugins__
 
-The below IDs have been found by going to https://plugins.jetbrains.com/pycharm and searching for the plugin. 
+The below IDs have been found by going to https://plugins.jetbrains.com/clion and searching for the plugin. 
 Once found copy the link location for the desired version and use the _updateId=XXXXX_ part at the end        
       
-    pycharm_plugins:
+    clion_plugins:
       # ignore 1.7.6
       - 32828
       # bash support 1.6.5.171
@@ -66,8 +67,8 @@ Once found copy the link location for the desired version and use the _updateId=
       # markdown 2017.1.20170302
       - 33092      
       
- Alternatively upload the required plugins to a webserver and adjust _pycharm_plugin_download_mirror_ and 
- _pycharm_plugins_ accordingly
+ Alternatively upload the required plugins to a webserver and adjust _clion_plugin_download_mirror_ and 
+ _clion_plugins_ accordingly
       
       
 License
@@ -78,5 +79,4 @@ MIT
 Change log
 ----------
 
-* 1.1: Create the desktop file directory in case we are the first
 * 1.0: Initial version
