@@ -1,0 +1,14 @@
+---
+clion_version: 2017.2
+clion_download_mirror: https://download.jetbrains.com/cpp/
+clion_plugin_download_mirror: "https://plugins.jetbrains.com/plugin/download?updateId="
+clion_plugins: []
+clion_download_directory: /tmp
+clion_install_directory: "{{ ansible_env['HOME'] }}/Tools"
+
+# calculated
+
+clion_install_file: "clion-{{ clion_version }}.tar.gz"
+clion_download_url: "{{ clion_download_mirror }}{{ clion_install_file }}"
+clion_location: "{{ clion_install_directory }}/clion-{{ clion_version }}"
+clion_desktop_file_location: "{{ ansible_env['HOME'] }}/.local/share/applications/clion-{{ clion_version }}.desktop"

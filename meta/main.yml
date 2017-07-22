@@ -1,0 +1,29 @@
+galaxy_info:
+  author: Henrik Lynggaard Hansen
+  description: Installs CLion and plugins
+
+  license: MIT
+
+  min_ansible_version: 2.1
+
+  platforms:
+  - name: Fedora
+    versions:
+    - 24
+    - 25
+    - 26
+
+  - name: Ubuntu
+    versions:
+    - xenial
+    - yakkety
+    - zesty
+
+  galaxy_tags:
+    - jetbrains
+    - workstation
+    - ide
+    - ruby
+    - rubymine
+
+dependencies: []
