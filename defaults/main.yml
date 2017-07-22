@@ -8,7 +8,7 @@ clion_install_directory: "{{ ansible_env['HOME'] }}/Tools"
 
 # calculated
 
-clion_install_file: "clion-{{ clion_version }}.tar.gz"
+clion_install_file: "CLion-{{ clion_version }}.tar.gz"
 clion_download_url: "{{ clion_download_mirror }}{{ clion_install_file }}"
 clion_location: "{{ clion_install_directory }}/clion-{{ clion_version }}"
 clion_desktop_file_location: "{{ ansible_env['HOME'] }}/.local/share/applications/clion-{{ clion_version }}.desktop"
